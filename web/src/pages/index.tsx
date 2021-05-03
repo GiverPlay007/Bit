@@ -10,11 +10,11 @@ export default function Home() {
         <title>Untitled Controller</title>
       </Head>
 
-      <Card title="Digital">
-        <SwitchButton label="D1"/>
-        <SwitchButton label="D2"/>
-        <SwitchButton label="D3"/>
-        <SwitchButton label="D4"/>
+      <Card title="Portas Digitais">
+        <SwitchButton label="Digital 1"/>
+        <SwitchButton label="Digital 2"/>
+        <SwitchButton label="Digital 3"/>
+        <SwitchButton label="Digital 4"/>
       </Card>
     </div>
   );

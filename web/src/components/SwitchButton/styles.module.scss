@@ -1,6 +1,4 @@
 .buttonContainer {
-  border: 1px red solid;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -55,7 +53,7 @@
       position: absolute;
       border-radius: 50%;
   
-      background-color: var(--white);
+      background-color: var(--gray-50);
   
       transition: 0.4s;
     }
