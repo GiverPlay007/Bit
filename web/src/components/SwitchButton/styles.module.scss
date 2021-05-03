@@ -1,0 +1,55 @@
+.switchButton {
+  width: 3.75rem;
+  height: 2.125rem;
+
+  position: relative;
+  display: inline-block;
+
+  input {
+    width: 0;
+    height: 0;
+    opacity: 0;
+    
+    &:checked + .slider {
+      background-color: var(--green);
+    }
+    
+    &:checked + .slider:before {
+      transform: translateX(1.625rem);
+    }
+  }
+  
+  .slider {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    
+    position: absolute;
+    border-radius: 2.125rem;
+    
+    box-shadow: 0px 0.125rem 1rem rgba(0, 0, 0, 0.3);
+    background-color: var(--gray-200);
+    
+    cursor: pointer;
+    transition: 0.4s;
+  
+    &:before {
+      content: "";
+  
+      width: 1.625rem;
+      height: 1.625rem;
+  
+      left: 0.25rem;
+      bottom: 0.25rem;
+  
+      position: absolute;
+      border-radius: 50%;
+  
+      background-color: var(--white);
+  
+      transition: 0.4s;
+    }
+  }
+}
+

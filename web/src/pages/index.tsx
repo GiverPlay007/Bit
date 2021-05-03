@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { SwitchButton } from "../components/SwitchButton";
 import styles from "./home.module.scss";
 
 export default function Home() {
@@ -8,7 +9,7 @@ export default function Home() {
         <title>Untitled Controller</title>
       </Head>
 
-      <h1>Hello World</h1>
+      <SwitchButton />
     </div>
   );
 }

@@ -13,7 +13,7 @@
   --gray-500: #808080;
   --gray-800: #494D4B;
   
-  --green-500: #04D361;
+  --green: #2ce086;
 }
 
 @media (max-width:  1080px) {
@@ -51,6 +51,6 @@ h2 {
   font-size: 1.5rem;
 }
 
-button {
+button, input {
   cursor: pointer;
 }
