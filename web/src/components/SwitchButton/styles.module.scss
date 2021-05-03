@@ -1,3 +1,12 @@
+.buttonContainer {
+  border: 1px red solid;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.25rem 1rem;
+}
+
 .switchButton {
   width: 3.75rem;
   height: 2.125rem;

@@ -1,10 +1,18 @@
 import styles from "./styles.module.scss";
 
-export function SwitchButton() {
+type ButtonProps = {
+  label: string;
+}
+
+export function SwitchButton(props: ButtonProps) {
   return (
-    <label className={styles.switchButton}>
-      <input type="checkbox"/>
-      <span className={styles.slider}></span>
-    </label>
+    <div className={styles.buttonContainer}>
+      <span>{props.label}</span>
+
+      <label className={styles.switchButton}>
+        <input type="checkbox"/>
+        <span className={styles.slider}></span>
+      </label>
+    </div>
   );
 }
