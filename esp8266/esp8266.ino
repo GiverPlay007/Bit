@@ -3,8 +3,8 @@
 
 using namespace websockets;
 
-const char* ssid = "Flamengo";
-const char* password = "987654321";
+const char* ssid = ssid
+const char* password = "pass";
 const char* server_uri = "ws://192.168.100.31:3001/esp";
 
 WebsocketsClient client;
