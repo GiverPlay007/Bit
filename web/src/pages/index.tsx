@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className={styles.homepage}>
       <Head>
-        <title>Untitled Controller</title>
+        <title>Bit</title>
       </Head>
 
       <Card title="Portas Digitais">
