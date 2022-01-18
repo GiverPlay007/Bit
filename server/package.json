@@ -7,5 +7,7 @@
   "author": "GiverPlay",
   "license": "MIT",
   "private": false,
-  "dependencies": {}
+  "dependencies": {
+    "express": "^4.17.2"
+  }
 }
