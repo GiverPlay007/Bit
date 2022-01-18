@@ -1,0 +1,11 @@
+{
+  "name": "bit-server",
+  "version": "1.0.0",
+  "description": "A IoT controller",
+  "main": "src/index.js",
+  "repository": "https://github.com/GiverPlay007/Bit.git",
+  "author": "GiverPlay",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {}
+}
