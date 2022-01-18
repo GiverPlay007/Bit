@@ -1,7 +1,4 @@
-const express = require('express')
+import "dotenv/config"
+import { server } from "./server.js"
 
-const server = express();
-
-server
-  .get('/', (req, res) => res.send('Oi, gatinha'))
-  .listen(3000, () => console.log('Ouvindo'));
+server.listen(process.env.PORT || 3000, () => console.log("Ligado"))
