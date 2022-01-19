@@ -1,8 +1,10 @@
 import { Router } from "express"
 
-import PinsController from "./controllers/PinsController.js"
+import UsersController from "./controllers/UsersController.js"
+import SessionController from "./controllers/SessionController.js"
 
 const routes = Router()
-routes.get('/pin', PinsController.pin)
+routes.post('/users', UsersController.create)
+routes.post('/auth', SessionController.auth)
 
 export { routes }

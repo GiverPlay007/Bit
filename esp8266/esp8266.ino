@@ -5,6 +5,7 @@ using namespace websockets;
 
 const char* ssid = ssid
 const char* password = "pass";
+const char* token = "0fa0a0sad0ais";
 const char* server_uri = "ws://192.168.100.31:3001/esp";
 
 WebsocketsClient client;
