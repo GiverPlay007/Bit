@@ -19,5 +19,6 @@ model Board {
 model User {
   id        String   @id @default(dbgenerated()) @map("_id") @db.ObjectId
   username  String   @unique
+  password  String
   boards    Board[]
 }
