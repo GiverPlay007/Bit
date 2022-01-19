@@ -12,6 +12,7 @@
     "dev": "nodemon src/index.js"
   },
   "dependencies": {
+    "@prisma/client": "^3.8.1",
     "dotenv": "^14.2.0",
     "express": "^4.17.2"
   },
