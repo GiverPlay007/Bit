@@ -1,4 +1,5 @@
 import prisma from "../database/index.js"
+import { sha256 } from "../utils/DigestUtils.js"
 
 const create = async (req, res) => {
   const { username, password } = req.body
@@ -22,7 +23,7 @@ const create = async (req, res) => {
   const user = await prisma.user.create({
     data: {
       username,
-      password
+      password: sha256(password)
     }
   })
 
