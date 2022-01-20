@@ -4,9 +4,7 @@ const create = async (req, res) => {
   const { username, password } = req.body
 
   const registered = await prisma.user.findFirst({
-    where: {
-      username
-    }
+    where: { username }
   })
 
   if(registered) {
@@ -20,7 +18,9 @@ const create = async (req, res) => {
     }
   })
 
-  return res.status(201).json(user)
+  delete user.password
+
+  return res.status(201).json({ user })
 }
 
 export default { create }
