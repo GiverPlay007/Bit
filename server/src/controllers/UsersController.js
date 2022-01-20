@@ -1,17 +1,16 @@
 import prisma from "../database/index.js"
 
 const create = async (req, res) => {
-  const data = await prisma.user.create({
+  const { username, password } = req.body
+
+  const user = await prisma.user.create({
     data: {
-      username: "giverzinho",
-      password: "a7b6f1"
+      username,
+      password
     }
   })
 
-  return res.json({
-    success: true,
-    data
-  })
+  return res.status(201).json(user)
 }
 
 export default { create }
