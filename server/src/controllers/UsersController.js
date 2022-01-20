@@ -9,6 +9,7 @@ const create = async (req, res) => {
       username ? username : "username-required",
       password ? password : "password-required"
     ]
+
     for(let i = 0; i < requestsBody.length; i++) {
       if(requestsBody[i].includes("required")) {
         return res.status(400).json({
@@ -23,7 +24,7 @@ const create = async (req, res) => {
   })
 
   if(registered) {
-    return res.status(409).json({ error: "User already registered" })
+    return res.status(409).json({ error: "User is already registered" })
   }
 
   const user = await prisma.user.create({
