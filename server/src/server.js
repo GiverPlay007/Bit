@@ -13,7 +13,7 @@ const errorHandler = (error, req, res, next) => {
 
 server.use(express.json())
 server.use(errorHandler)
-server.use(express.urlencoded({ extended: true }))
+// server.use(express.urlencoded({ extended: true }))
 
 server.use(routes)
 
