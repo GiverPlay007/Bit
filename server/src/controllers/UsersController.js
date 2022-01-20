@@ -4,12 +4,18 @@ import { sha256 } from "../utils/DigestUtils.js"
 const create = async (req, res) => {
   const { username, password } = req.body
 
-  if(!username) {
-    return res.status(400).json({ error: "Username is required" })
-  }
-
-  if(!password) {
-    return res.status(400).json({ error: "Password is required" })
+  if(!username || !password) {
+    const requestsBody = [
+      username ? username : "username-required",
+      password ? password : "password-required"
+    ]
+    for(let i = 0; i < requestsBody.length; i++) {
+      if(requestsBody[i].includes("required")) {
+        return res.status(400).json({
+          error: `${requestsBody[i].split('-')[0]} is required`
+        })
+      }
+    }
   }
 
   const registered = await prisma.user.findFirst({
