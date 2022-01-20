@@ -3,6 +3,14 @@ import prisma from "../database/index.js"
 const create = async (req, res) => {
   const { username, password } = req.body
 
+  if(!username) {
+    return res.status(400).json({ error: "Username is required" })
+  }
+
+  if(!password) {
+    return res.status(400).json({ error: "Password is required" })
+  }
+
   const registered = await prisma.user.findFirst({
     where: { username }
   })
