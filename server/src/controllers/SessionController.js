@@ -48,4 +48,28 @@ const auth = async (req, res) => {
   return res.status(202).json({ token })
 }
 
-export default { auth }
+const validateToken = async (req, res) => {
+  const { token } = req.body
+
+  if(!token) {
+    return res.status(400).json({ error: "Missing token" })
+  }
+
+  const session = await prisma.session.findFirst({
+    where: { token }
+  })
+
+  if(!session) {
+    return res.status(401).json({ error: "Invalid token" })
+  }
+
+  if(session.expire <= Date.now()) {
+    await prisma.session.delete({ where: { id: session.id } })
+
+    return res.status(401).json({ error: "Session expired" })
+  }
+
+  return res.status(200).json({ expire: session.expire })
+}
+
+export default { auth, validateToken }
