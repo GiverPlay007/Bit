@@ -1,6 +1,4 @@
-import prisma from "../database/index.js"
-import { randomToken, sha256 } from "../utils/DigestUtils.js"
-import { expireDate } from "../providers/SessionProvider.js"
+import { doAuth, expireDate } from "../providers/SessionProvider.js"
 
 const auth = async (req, res) => {
   const { username, password } = req.body
@@ -20,33 +18,12 @@ const auth = async (req, res) => {
     }
   }
 
-  const user = await prisma.user.findFirst({
-    where: { username }
-  })
-
-  if(!user) {
-    return res.status(401).json({ error: "User not registered" })
+  try {
+    const token = await doAuth(username, password)
+    return res.status(202).json({ token })
+  } catch(error) {
+    return res.status(401).json({ error })
   }
-
-  if(user.password !== sha256(password)) {
-    return res.status(401).json({ error: "Wrong password" })
-  }
-
-  const token = randomToken(user.username)
-
-  await prisma.session.create({
-    data: {
-      token,
-      expire: new Date(Date.now() + 3600000).toISOString(),
-      user: {
-        connect: {
-          id: user.id
-        }
-      }
-    }
-  })
-
-  return res.status(202).json({ token })
 }
 
 const validateToken = async (req, res) => {
