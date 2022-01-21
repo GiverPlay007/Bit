@@ -1,5 +1,6 @@
 import prisma from "../database/index.js"
 import { randomToken, sha256 } from "../utils/DigestUtils.js"
+import { expireDate } from "../providers/SessionProvider.js"
 
 const auth = async (req, res) => {
   const { username, password } = req.body
@@ -55,21 +56,12 @@ const validateToken = async (req, res) => {
     return res.status(400).json({ error: "Missing token" })
   }
 
-  const session = await prisma.session.findFirst({
-    where: { token }
-  })
-
-  if(!session) {
-    return res.status(401).json({ error: "Invalid token" })
+  try {
+    const expire = await expireDate(token)
+    return res.status(200).json({ expire })
+  } catch(error) {
+    return res.status(401).json({ error })
   }
-
-  if(session.expire <= Date.now()) {
-    await prisma.session.delete({ where: { id: session.id } })
-
-    return res.status(401).json({ error: "Session expired" })
-  }
-
-  return res.status(200).json({ expire: session.expire })
 }
 
 export default { auth, validateToken }
