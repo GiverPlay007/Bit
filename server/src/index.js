@@ -11,4 +11,4 @@ prisma.$connect().then(() => console.log("Database connected"))
 const server = createServer(app)
 const wss = createWss(server)
 
-app.listen(process.env.PORT || 3000, () => console.log("Server started"))
+server.listen(process.env.PORT || 3000, () => console.log("Server started"))
