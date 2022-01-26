@@ -1,4 +1,4 @@
-import websocket from "ws"
+import { WebSocketServer } from "ws"
 
 const onMessage = (ws, data) => {
   console.log(`Message: ${data}`)
@@ -15,7 +15,7 @@ const onConnection = (ws, req) => {
 }
 
 const wss = (server) => {
-  const websocketServer = new websocket.Server({ server })
+  const websocketServer = new WebSocketServer({ server })
   websocketServer.on('connection', onConnection)
 
   console.log('WebSocket server running!')
