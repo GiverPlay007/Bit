@@ -1,6 +1,6 @@
 import "dotenv/config"
 
-import { app } from "./server.js"
+import { app } from "./app.js"
 import { createWss } from "./websocket_server.js"
 
 import { createServer } from "http"
