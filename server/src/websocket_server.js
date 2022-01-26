@@ -14,12 +14,13 @@ const onConnection = (ws, req) => {
   console.log("New client!")
 }
 
-const wss = (server) => {
+const createWss = (server) => {
   const websocketServer = new WebSocketServer({ server })
+
   websocketServer.on('connection', onConnection)
 
   console.log('WebSocket server running!')
   return websocketServer
 }
 
-export { wss }
+export { createWss }

@@ -1,7 +1,7 @@
 import express from "express"
 import { routes } from "./routes.js"
 
-const server = express()
+const app = express()
 
 const errorHandler = (error, req, res, next) => {
   if(error instanceof SyntaxError) {
@@ -11,9 +11,9 @@ const errorHandler = (error, req, res, next) => {
   next()
 }
 
-server.use(express.json())
-server.use(errorHandler)
+app.use(express.json())
+app.use(errorHandler)
 
-server.use(routes)
+app.use(routes)
 
-export { server }
+export { app }
