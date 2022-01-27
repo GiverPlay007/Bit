@@ -2,8 +2,8 @@ import "dotenv/config"
 
 import { app } from "./app.js"
 import { createWss } from "./websocket_server.js"
-
 import { createServer } from "http"
+
 import prisma from "./database/index.js"
 
 prisma.$connect().then(() => console.log("Database connected"))
