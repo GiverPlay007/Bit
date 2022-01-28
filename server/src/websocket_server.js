@@ -1,13 +1,7 @@
 import { WebSocketServer } from "ws"
 import { getBoard } from "./providers/BoardProvider.js"
 
-const onMessage = (ws, data) => {
-  console.log(`Message: ${data}`)
-}
-
-const onError = (ws, error) => {
-  console.error(`Error: ${error}`)
-}
+import boardHandler from "./handlers/BoardHandler.js"
 
 const onConnection = async (ws, req) => {
   const board = await getBoard(req.headers['token'])
@@ -17,8 +11,8 @@ const onConnection = async (ws, req) => {
     return ws.close()
   }
 
-  ws.on('message', onMessage)
-  ws.on('error', onError)
+  ws.on('message', boardHandler.onMessage)
+  ws.on('error', boardHandler.onError)
   console.log("New client!")
 }
 
