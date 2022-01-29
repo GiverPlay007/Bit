@@ -1,28 +1,17 @@
 import { WebSocketServer } from "ws"
-import { getBoard } from "./providers/BoardProvider.js"
 
 import boardHandler from "./handlers/BoardHandler.js"
-
-const onConnection = async (ws, req) => {
-  const board = await getBoard(req.headers['token'])
-  
-  if(!board) {
-    ws.send(401)
-    return ws.close()
-  }
-
-  ws.on('message', boardHandler.onMessage)
-  ws.on('error', boardHandler.onError)
-  console.log("New client!")
-}
+import panelHandler from "./handlers/PanelHandler.js"
 
 const createWss = (server) => {
-  const websocketServer = new WebSocketServer({ server })
+  const boardServer = new WebSocketServer({ server, path: '/board' })
+  const panelServer = new WebSocketServer({ server, path: '/panel' })
 
-  websocketServer.on('connection', onConnection)
+  boardServer.on('connection', boardHandler.onConnection)
+  panelServer.on('connection', panelHandler.onConnection)
 
   console.log('WebSocket server running!')
-  return websocketServer
+  return { boardServer, panelServer }
 }
 
 export { createWss }

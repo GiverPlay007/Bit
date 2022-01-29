@@ -9,6 +9,6 @@ import prisma from "./database/index.js"
 prisma.$connect().then(() => console.log("Database connected"))
 
 const server = createServer(app)
-const wss = createWss(server)
+const { boardServer, panelServer } = createWss(server)
 
 server.listen(process.env.PORT || 3000, () => console.log("Server started"))
