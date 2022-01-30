@@ -2,7 +2,7 @@ const onConnection = async (ws, req) => {
   const token = req.headers['X-Auth']
 
   if(!token) {
-    ws.send({ error: '401: Unauthorized' })
+    ws.send('401: Unauthorized')
     return ws.close()
   }
   
