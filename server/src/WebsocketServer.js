@@ -1,5 +1,5 @@
 import { WebSocketServer } from "ws"
-import { parse } from 'url'
+import { URL } from 'url'
 
 import boardHandler from "./handlers/BoardHandler.js"
 import panelHandler from "./handlers/PanelHandler.js"
@@ -12,20 +12,16 @@ const createWss = (server) => {
   panelServer.on('connection', panelHandler.onConnection)
 
   server.on('upgrade', (request, socket, head) => {
-    const { path } = parse(request.url);
+    const pathname = request.url
   
-    const server = path === '/board' ? boardServer : path === '/panel' ? panelServer : undefined;
+    const server = pathname === '/board' ? boardServer : pathname === '/panel' ? panelServer : undefined
 
     if(!server) {
       return socket.destroy()
     }
 
-    server.handleUpgrade(request, socket, head, ws => {
-      server.emit('connection', ws, request)
-    })
+    server.handleUpgrade(request, socket, head, ws => server.emit('connection', ws, request))
   })
-
-  
 
   boardServer.on('connection', boardHandler.onConnection)
   panelServer.on('connection', panelHandler.onConnection)
